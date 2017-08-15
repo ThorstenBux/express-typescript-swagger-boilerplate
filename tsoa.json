@@ -10,6 +10,7 @@
         "basePath": "/v1",
         "entryFile": "./src/server.ts",
         "routesDir": "./src/",
-        "middleware": "express"
+        "middleware": "express",
+        "iocModule": "./src/inversify/ioc"
     }
 }
