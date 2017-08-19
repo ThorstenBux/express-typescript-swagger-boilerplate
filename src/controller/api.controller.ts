@@ -1,16 +1,15 @@
 import { Get, Route } from "tsoa";
+// IMPORTANT: reflect-metadata needs to be imported otherwise the dependency injection won't work
+import "reflect-metadata";
+import { provideSingleton } from "../inversify/ioc";
 
 
 @Route("Api")
+@provideSingleton(ApiController)
 export class ApiController {
     @Get()
-    public async getApi(): Promise<string> {
+    async getApi(): Promise<string> {
         console.log("get API");
-        return "getApi";
+        return await Promise.resolve("getApi");
     }
 }
-
-// export let getApi = (req: Request, res: Response) => {
-//     console.log("get API");
-//     res.send("getApi");
-// };

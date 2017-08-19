@@ -1,9 +1,16 @@
 /* tslint:disable */
 import { Controller, ValidateParam, FieldErrors, ValidateError, TsoaRoute } from 'tsoa';
+import { iocContainer } from './inversify/ioc';
 import { ApiController } from './controller/api.controller';
-import { ResumeController } from './controller/resume.controller';
+import { HeroesController } from './controller/hero.controller';
 
 const models: TsoaRoute.Models = {
+    "Hero": {
+        "properties": {
+            "id": { "dataType": "double", "required": true },
+            "name": { "dataType": "string", "required": true },
+        },
+    },
 };
 
 export function RegisterRoutes(app: any) {
@@ -19,13 +26,13 @@ export function RegisterRoutes(app: any) {
                 return next(err);
             }
 
-            const controller = new ApiController();
+            const controller = iocContainer.get<ApiController>(ApiController);
 
 
             const promise = controller.getApi.apply(controller, validatedArgs);
             promiseHandler(controller, promise, response, next);
         });
-    app.get('/v1/Resume',
+    app.get('/v1/Heroes',
         function(request: any, response: any, next: any) {
             const args = {
             };
@@ -37,10 +44,10 @@ export function RegisterRoutes(app: any) {
                 return next(err);
             }
 
-            const controller = new ResumeController();
+            const controller = iocContainer.get<HeroesController>(HeroesController);
 
 
-            const promise = controller.getResume.apply(controller, validatedArgs);
+            const promise = controller.getHeroes.apply(controller, validatedArgs);
             promiseHandler(controller, promise, response, next);
         });
 

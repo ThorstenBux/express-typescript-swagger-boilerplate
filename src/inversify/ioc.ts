@@ -1,4 +1,4 @@
-import { Container, inject, interfaces, injectable } from "inversify";
+import { Container, inject, interfaces } from "inversify";
 import { autoProvide, makeProvideDecorator, makeFluentProvideDecorator } from "inversify-binding-decorators";
 
 const iocContainer = new Container();
@@ -14,4 +14,4 @@ const provideSingleton = function(
         .done();
   };
 
-export { iocContainer, autoProvide, provide, inject, provideSingleton, injectable };
+export { iocContainer, autoProvide, provide, inject, provideSingleton };

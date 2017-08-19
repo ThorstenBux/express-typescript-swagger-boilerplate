@@ -12,7 +12,7 @@ import * as dotenv from "dotenv";
 import { RegisterRoutes } from "./routes";
 // We still need to import the controller to have them crawled by the generator
 import "./controller/api.controller";
-import "./controller/resume.controller";
+import "./controller/hero.controller";
 
 // Swagger support
 const swaggerUi = require("swagger-ui-express");
@@ -24,7 +24,7 @@ const server = express();
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
-dotenv.config({ path: ".env" });
+dotenv.config({ path: `${server.get("env")}.env` });
 
 /**
  * RouteHandler.
