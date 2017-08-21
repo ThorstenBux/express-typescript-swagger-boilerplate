@@ -16,3 +16,4 @@ npm-debug.log
 
 #Tyepscript output directory
 dist
+src/routes.ts
