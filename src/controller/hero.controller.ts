@@ -17,6 +17,6 @@ export class HeroesController {
             async heroes => {
                 console.log("Hero name: " + heroes[0].name);
                 return await heroes;
-            });
+            }).catch(error => console.log(`GetHeroes error: ${error}`));
     }
 }

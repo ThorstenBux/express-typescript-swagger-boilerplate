@@ -27,6 +27,13 @@ const server = express();
 dotenv.config({ path: `${server.get("env")}.env` });
 
 /**
+ * Establish MongoDB connection.
+ * Needs to be after dotenv was loaded
+ */
+import "./config/mongodb";
+
+
+/**
  * RouteHandler.
  */
 // server.get("/api", apiRouteHandler.getApi);
@@ -37,7 +44,7 @@ server.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 // Configure ExpressJS
-server.use(logger("dev"));
+server.use(logger(process.env.MORGAN_LOGGER));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: false }));
 

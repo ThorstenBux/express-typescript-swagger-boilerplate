@@ -7,8 +7,9 @@ import { HeroesController } from './controller/hero.controller';
 const models: TsoaRoute.Models = {
     "Hero": {
         "properties": {
-            "id": { "dataType": "double", "required": true },
+            "heroId": { "dataType": "double", "required": true },
             "name": { "dataType": "string", "required": true },
+            "id": { "dataType": "string", "required": true },
         },
     },
 };

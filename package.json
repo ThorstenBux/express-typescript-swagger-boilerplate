@@ -23,10 +23,12 @@
     "express": "~4.15.2",
     "inversify": "^4.3.0",
     "inversify-binding-decorators": "^3.0.0",
+    "mongoose": "^4.11.7",
     "morgan": "~1.8.1",
     "reflect-metadata": "^0.1.10",
     "swagger-ui-express": "^2.0.6",
-    "tsoa": "^1.3.3"
+    "tsoa": "^1.3.3",
+    "typegoose": "^3.1.1"
   },
   "devDependencies": {
     "@types/body-parser": "^1.16.4",
