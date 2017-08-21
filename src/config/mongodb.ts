@@ -1,6 +1,7 @@
 import * as mongoose from "mongoose";
 import * as dotenv from "dotenv";
 
+// This is needed till mongoose implements the ES2015 native Promises, which should be in version 5.x
 (<any> mongoose).Promise = global.Promise;
 
 const mongoDbUrl = process.env.MONGODB;
