@@ -2,6 +2,7 @@ import * as express from "express";
 // https://www.npmjs.com/package/morgan
 import * as logger from "morgan";
 import * as bodyParser from "body-parser";
+import * as path from "path";
 
 // https://www.npmjs.com/package/errorhandler
 import * as errorHandler from "errorhandler";
@@ -41,6 +42,9 @@ RegisterRoutes(server);
 
 // Serve the swagger ui at /api-docs
 server.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+// Serve static HTML
+server.use("/static", express.static(path.join(__dirname, "views")) );
 
 
 // Configure ExpressJS
