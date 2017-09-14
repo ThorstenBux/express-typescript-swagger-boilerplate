@@ -1,24 +1,7 @@
 <html>
     <head>
         <script src="//cdnjs.cloudflare.com/ajax/libs/deepstream.io-client-js/2.1.1/deepstream.js"></script>
-        <script
-        src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
-        integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
-        crossorigin="anonymous"></script>        
-        <script>
-            	//establish a connection. You can find your endpoint url in the
-	            //deepstreamhub dashb
-                const ds = deepstream( 'localhost:6020' );
-
-                //display the connection state at the top
-                ds.on( 'connectionStateChanged', function( connectionState ){
-                    $( '#connection-state' ).text( connectionState );
-                })
-                
-                //authenticate your connection. We haven't activated auth,
-                //so this method can be called without arguments
-                ds.login();
-        </script>
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>        
     </head>
 <body>
 <h1> Hello </h1>
@@ -27,5 +10,51 @@
 		Connection-State is: <em id="connection-state">INITIAL</em>
 </div>
 
+<div class="group realtimedb">
+		<h2>Realtime Datastore</h2>
+		<div class="input-group half left">
+			<label>Firstname</label>
+			<input type="text" id="firstname-input" />
+        </div>
+</div>
+
+<script>
+        //establish a connection. You can find your endpoint url in the
+        //deepstreamhub dashb
+        const ds = deepstream( 'localhost:6020' );
+
+        //display the connection state at the top
+        ds.on( 'connectionStateChanged', function( connectionState ){
+            $( '#connection-state' ).text( connectionState );
+        })
+        
+        //authenticate your connection. We haven't activated auth,
+        //so this method can be called without arguments
+        ds.login();
+
+        //Request or create a new record
+        const myRecord = ds.record.getRecord( 'test/johndoe' );
+
+        //Values can be stored using the .set() method
+        // myRecord.set({
+        //     firstname: 'John',
+        //     lastname: 'Doe'
+        // });
+
+        const input = $( '#firstname-input' );
+        input.val(myRecord.firstname);
+
+        console.log(input);
+        // Update the input when the record changes
+        myRecord.subscribe( 'firstname', function( firstname ){
+            input.val( firstname );
+        });
+
+        input.keyup( key => {
+            myRecord.set( 'firstname', input.val() );
+            console.log('keyUp'+ key.which);
+        });
+
+</script>
 </body>
 </html>

@@ -43,6 +43,7 @@ The server can take
 4) pass some options, missing options will be merged with the base configuration
 */
 const deepstreamServer = new DeepstreamServer();
+deepstreamServer.set("logLevel", "DEBUG");
 // start the server
 deepstreamServer.start();
 
